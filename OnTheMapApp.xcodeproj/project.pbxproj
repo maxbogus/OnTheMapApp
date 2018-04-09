@@ -19,6 +19,7 @@
 		4A8EA63020630549004F6713 /* OnTheMapAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8EA62F20630549004F6713 /* OnTheMapAppUITests.swift */; };
 		4A96BA7120717E5B00C29113 /* UdacityAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A96BA7020717E5B00C29113 /* UdacityAuthViewController.swift */; };
 		4A96BA73207AC59200C29113 /* OnTheMapTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A96BA72207AC59200C29113 /* OnTheMapTabViewController.swift */; };
+		4A985C9C207C2C380023BE5A /* CompleteNewPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A985C9B207C2C380023BE5A /* CompleteNewPlaceViewController.swift */; };
 		4AF0C2DA206AF62400172F3E /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF0C2D9206AF62400172F3E /* GCDBlackBox.swift */; };
 		4AF0C2DF206C51B100172F3E /* ParseStudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF0C2DE206C51B100172F3E /* ParseStudentInformation.swift */; };
 		4AF0C2E1206C526C00172F3E /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF0C2E0206C526C00172F3E /* ParseClient.swift */; };
@@ -66,6 +67,7 @@
 		4A8EA63120630549004F6713 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A96BA7020717E5B00C29113 /* UdacityAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UdacityAuthViewController.swift; sourceTree = "<group>"; };
 		4A96BA72207AC59200C29113 /* OnTheMapTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTheMapTabViewController.swift; sourceTree = "<group>"; };
+		4A985C9B207C2C380023BE5A /* CompleteNewPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteNewPlaceViewController.swift; sourceTree = "<group>"; };
 		4AF0C2D9206AF62400172F3E /* GCDBlackBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 		4AF0C2DE206C51B100172F3E /* ParseStudentInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseStudentInformation.swift; sourceTree = "<group>"; };
 		4AF0C2E0206C526C00172F3E /* ParseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				4A7628CB206DA0D200C5D9C5 /* StudentsPlacesMapViewController.swift */,
 				4A7628CD206DA0FC00C5D9C5 /* StudentsPlacesListViewController.swift */,
 				4A96BA72207AC59200C29113 /* OnTheMapTabViewController.swift */,
+				4A985C9B207C2C380023BE5A /* CompleteNewPlaceViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 				4A7628CA206DA09F00C5D9C5 /* AddNewPlaceViewController.swift in Sources */,
 				4AF0C2DA206AF62400172F3E /* GCDBlackBox.swift in Sources */,
 				4A96BA7120717E5B00C29113 /* UdacityAuthViewController.swift in Sources */,
+				4A985C9C207C2C380023BE5A /* CompleteNewPlaceViewController.swift in Sources */,
 				4A7628CE206DA0FC00C5D9C5 /* StudentsPlacesListViewController.swift in Sources */,
 				4A7628CC206DA0D200C5D9C5 /* StudentsPlacesMapViewController.swift in Sources */,
 				4AF0C2E7206C52DF00172F3E /* ParseConfig.swift in Sources */,
