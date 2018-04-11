@@ -21,7 +21,7 @@
 		4A96BA73207AC59200C29113 /* OnTheMapTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A96BA72207AC59200C29113 /* OnTheMapTabViewController.swift */; };
 		4A985C9C207C2C380023BE5A /* CompleteNewPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A985C9B207C2C380023BE5A /* CompleteNewPlaceViewController.swift */; };
 		4AF0C2DA206AF62400172F3E /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF0C2D9206AF62400172F3E /* GCDBlackBox.swift */; };
-		4AF0C2DF206C51B100172F3E /* ParseStudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF0C2DE206C51B100172F3E /* ParseStudentInformation.swift */; };
+		4AF0C2DF206C51B100172F3E /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF0C2DE206C51B100172F3E /* StudentInformation.swift */; };
 		4AF0C2E1206C526C00172F3E /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF0C2E0206C526C00172F3E /* ParseClient.swift */; };
 		4AF0C2E3206C52BC00172F3E /* ParseConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF0C2E2206C52BC00172F3E /* ParseConvenience.swift */; };
 		4AF0C2E5206C52D100172F3E /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF0C2E4206C52D100172F3E /* ParseConstants.swift */; };
@@ -69,7 +69,7 @@
 		4A96BA72207AC59200C29113 /* OnTheMapTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTheMapTabViewController.swift; sourceTree = "<group>"; };
 		4A985C9B207C2C380023BE5A /* CompleteNewPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteNewPlaceViewController.swift; sourceTree = "<group>"; };
 		4AF0C2D9206AF62400172F3E /* GCDBlackBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
-		4AF0C2DE206C51B100172F3E /* ParseStudentInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseStudentInformation.swift; sourceTree = "<group>"; };
+		4AF0C2DE206C51B100172F3E /* StudentInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
 		4AF0C2E0206C526C00172F3E /* ParseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
 		4AF0C2E2206C52BC00172F3E /* ParseConvenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseConvenience.swift; sourceTree = "<group>"; };
 		4AF0C2E4206C52D100172F3E /* ParseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseConstants.swift; sourceTree = "<group>"; };
@@ -229,7 +229,7 @@
 				4AF0C2E6206C52DF00172F3E /* ParseConfig.swift */,
 				4AF0C2E4206C52D100172F3E /* ParseConstants.swift */,
 				4AF0C2E2206C52BC00172F3E /* ParseConvenience.swift */,
-				4AF0C2DE206C51B100172F3E /* ParseStudentInformation.swift */,
+				4AF0C2DE206C51B100172F3E /* StudentInformation.swift */,
 			);
 			path = Parse;
 			sourceTree = "<group>";
@@ -368,7 +368,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4AF0C2DF206C51B100172F3E /* ParseStudentInformation.swift in Sources */,
+				4AF0C2DF206C51B100172F3E /* StudentInformation.swift in Sources */,
 				4AF0C2ED206C532D00172F3E /* UdacityConstants.swift in Sources */,
 				4AF0C2E3206C52BC00172F3E /* ParseConvenience.swift in Sources */,
 				4AF0C2E1206C526C00172F3E /* ParseClient.swift in Sources */,
