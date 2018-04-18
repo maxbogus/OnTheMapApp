@@ -38,10 +38,15 @@ extension ParseClient {
     
     // MARK: Parameter Keys
     struct ParameterKeys {
-        static let ApiKey = "api_key"
-        static let SessionID = "session_id"
-        static let RequestToken = "request_token"
-        static let Query = "query"
+        static let Limit = "limit"
+        static let Order = "order"
+        static let Where = "where"
+    }
+    
+    // MARK: Parameter Values
+    struct ParameterValues {
+        static let LimitValue = "100"
+        static let OrderType = "-updatedAt"
     }
     
     // MARK: JSON Body Keys

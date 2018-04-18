@@ -358,6 +358,9 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="" image="icon_listview-deselected" selectedImage="icon_listview-selected" id="jpU-IM-3kg"/>
+                    <connections>
+                        <outlet property="uiTableView" destination="ikk-AN-A8c" id="Akm-ya-eQT"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="77q-4a-hWc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -10,6 +10,8 @@ import UIKit
 
 class StudentsPlacesMapViewController: UIViewController {
     
+    var locations = [StudentInformation]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.

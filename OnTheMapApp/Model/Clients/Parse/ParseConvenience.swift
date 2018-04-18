@@ -169,7 +169,8 @@ extension ParseClient {
     func getStudentLocations(_ completionHandlerForStudentLocations: @escaping (_ result: [StudentInformation]?, _ error: NSError?) -> Void) {
         
         /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
-        let parameters = [ParseClient.ParameterKeys.SessionID: ParseClient.sharedInstance().sessionID!]
+        let parameters = [ParameterKeys.Limit: ParameterValues.LimitValue,
+                          ParameterKeys.Order: ParameterValues.OrderType]
         var mutableMethod: String = Methods.StudentLocation
         mutableMethod = substituteKeyInMethod(mutableMethod, key: ParseClient.URLKeys.UserID, value: String(ParseClient.sharedInstance().userID!))!
         

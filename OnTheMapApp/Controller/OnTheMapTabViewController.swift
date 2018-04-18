@@ -11,7 +11,13 @@ import UIKit
 class OnTheMapTabViewController: UITabBarController {
     
     @IBAction func refresh(_ sender: Any) {
-        print("reload")
+        let alert = UIAlertController(title: "Data", message: "Reloaded", preferredStyle: UIAlertControllerStyle.alert)
+        
+        // add an action (button)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func addMarker(_ sender: Any) {
