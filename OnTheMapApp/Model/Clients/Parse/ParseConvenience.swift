@@ -172,7 +172,7 @@ extension ParseClient {
         let parameters = [ParameterKeys.Limit: ParameterValues.LimitValue,
                           ParameterKeys.Order: ParameterValues.OrderType]
         var mutableMethod: String = Methods.StudentLocation
-        mutableMethod = substituteKeyInMethod(mutableMethod, key: ParseClient.URLKeys.UserID, value: String(ParseClient.sharedInstance().userID!))!
+//        mutableMethod = substituteKeyInMethod(mutableMethod, key: ParseClient.URLKeys.UserID, value: String(ParseClient.sharedInstance().userID!))!
         
         /* 2. Make the request */
         let _ = taskForGETMethod(mutableMethod, parameters: parameters as [String:AnyObject]) { (results, error) in
@@ -181,8 +181,7 @@ extension ParseClient {
             if let error = error {
                 completionHandlerForStudentLocations(nil, error)
             } else {
-                
-                if let results = results?[ParseClient.JSONResponseKeys.MovieResults] as? [[String:AnyObject]] {
+                if let results = results?[ParseClient.JSONResponseKeys.StudentsResults] as? [[String:AnyObject]] {
                     
                     let students = StudentInformation.studentsFromResults(results)
                     completionHandlerForStudentLocations(students, nil)
@@ -196,7 +195,7 @@ extension ParseClient {
     func getStudentLocation(_ completionHandlerForStudentLocation: @escaping (_ result: [StudentInformation]?, _ error: NSError?) -> Void) {
 
         /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
-        let parameters = [ParseClient.ParameterKeys.SessionID: ParseClient.sharedInstance().sessionID!]
+        let parameters = [ParameterKeys.Where: "%7B%22uniqueKey%22%3A%221234%22%7D"]
         var mutableMethod: String = Methods.StudentLocation
         mutableMethod = substituteKeyInMethod(mutableMethod, key: ParseClient.URLKeys.UserID, value: String(ParseClient.sharedInstance().userID!))!
 
@@ -208,7 +207,7 @@ extension ParseClient {
                 completionHandlerForStudentLocation(nil, error)
             } else {
 
-                if let results = results?[ParseClient.JSONResponseKeys.MovieResults] as? [[String:AnyObject]] {
+                if let results = results?[ParseClient.JSONResponseKeys.StudentsResults] as? [[String:AnyObject]] {
 
                     let students = StudentInformation.studentsFromResults(results)
                     completionHandlerForStudentLocation(students, nil)

@@ -24,7 +24,6 @@
 		4AF0C2E1206C526C00172F3E /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF0C2E0206C526C00172F3E /* ParseClient.swift */; };
 		4AF0C2E3206C52BC00172F3E /* ParseConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF0C2E2206C52BC00172F3E /* ParseConvenience.swift */; };
 		4AF0C2E5206C52D100172F3E /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF0C2E4206C52D100172F3E /* ParseConstants.swift */; };
-		4AF0C2E7206C52DF00172F3E /* ParseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF0C2E6206C52DF00172F3E /* ParseConfig.swift */; };
 		4AF0C2E9206C530C00172F3E /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF0C2E8206C530C00172F3E /* UdacityClient.swift */; };
 		4AF0C2ED206C532D00172F3E /* UdacityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF0C2EC206C532D00172F3E /* UdacityConstants.swift */; };
 		4AF0C2EF206C534400172F3E /* UdacityConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF0C2EE206C534400172F3E /* UdacityConvenience.swift */; };
@@ -71,7 +70,6 @@
 		4AF0C2E0206C526C00172F3E /* ParseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
 		4AF0C2E2206C52BC00172F3E /* ParseConvenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseConvenience.swift; sourceTree = "<group>"; };
 		4AF0C2E4206C52D100172F3E /* ParseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseConstants.swift; sourceTree = "<group>"; };
-		4AF0C2E6206C52DF00172F3E /* ParseConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseConfig.swift; sourceTree = "<group>"; };
 		4AF0C2E8206C530C00172F3E /* UdacityClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UdacityClient.swift; sourceTree = "<group>"; };
 		4AF0C2EC206C532D00172F3E /* UdacityConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UdacityConstants.swift; sourceTree = "<group>"; };
 		4AF0C2EE206C534400172F3E /* UdacityConvenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UdacityConvenience.swift; sourceTree = "<group>"; };
@@ -223,7 +221,6 @@
 			isa = PBXGroup;
 			children = (
 				4AF0C2E0206C526C00172F3E /* ParseClient.swift */,
-				4AF0C2E6206C52DF00172F3E /* ParseConfig.swift */,
 				4AF0C2E4206C52D100172F3E /* ParseConstants.swift */,
 				4AF0C2E2206C52BC00172F3E /* ParseConvenience.swift */,
 				4AF0C2DE206C51B100172F3E /* StudentInformation.swift */,
@@ -375,7 +372,6 @@
 				4A985C9C207C2C380023BE5A /* CompleteNewPlaceViewController.swift in Sources */,
 				4A7628CE206DA0FC00C5D9C5 /* StudentsPlacesListViewController.swift in Sources */,
 				4A7628CC206DA0D200C5D9C5 /* StudentsPlacesMapViewController.swift in Sources */,
-				4AF0C2E7206C52DF00172F3E /* ParseConfig.swift in Sources */,
 				4A8EA61020630549004F6713 /* AppDelegate.swift in Sources */,
 				4A96BA73207AC59200C29113 /* OnTheMapTabViewController.swift in Sources */,
 				4AF0C2E5206C52D100172F3E /* ParseConstants.swift in Sources */,

@@ -19,7 +19,7 @@ extension ParseClient {
         
         // MARK: URLs
         static let ApiScheme = "https"
-        static let ApiHost = "api.themoviedb.org"
+        static let ApiHost = "parse.udacity.com"
         static let ApiPath = "/parse/classes"
         static let StudentLocationURL = "https://parse.udacity.com/parse/classes/StudentLocation/"
     }
@@ -63,45 +63,22 @@ extension ParseClient {
         // MARK: General
         static let StatusMessage = "status_message"
         static let StatusCode = "status_code"
+        static let StudentsResults = "results"
         
         // MARK: Authorization
         static let RequestToken = "request_token"
         static let SessionID = "session_id"
         
-        // MARK: Account
-        static let UserID = "id"
-        
-        // MARK: Config
-        static let ConfigBaseImageURL = "base_url"
-        static let ConfigSecureBaseImageURL = "secure_base_url"
-        static let ConfigImages = "images"
-        static let ConfigPosterSizes = "poster_sizes"
-        static let ConfigProfileSizes = "profile_sizes"
-        
-        // "createdAt": "2015-02-25T01:10:38.103Z",
-        //"firstName": "Jarrod",
-        //"lastName": "Parkes",
-        //"latitude": 34.7303688,
-        //"longitude": -86.5861037,
-        //"mapString": "Huntsville, Alabama ",
-        //"mediaURL": "https://www.linkedin.com/in/jarrodparkes",
-        //"objectId": "JhOtcRkxsh",
-        //"uniqueKey": "996618664",
-        //"updatedAt": "2015-03-09T22:04:50.315Z"
-        
-        // MARK: Movies
-        static let MovieID = "id"
-        static let MovieTitle = "title"
-        static let MoviePosterPath = "poster_path"
-        static let MovieReleaseDate = "release_date"
-        static let MovieReleaseYear = "release_year"
-        static let MovieResults = "results"
-        
-    }
-    
-    // MARK: Poster Sizes
-    struct PosterSizes {
-        static let RowPoster = ParseClient.sharedInstance().config.posterSizes[2]
-        static let DetailPoster = ParseClient.sharedInstance().config.posterSizes[4]
+        // MARK: StudentLocations
+        static let CreatedAt = "createdAt"
+        static let FirstName = "firstName"
+        static let LastName = "lastName"
+        static let Latitude = "latitude"
+        static let Longitude = "longitude"
+        static let MapString = "mapString"
+        static let MediaURL = "mediaURL"
+        static let ObjectId = "objectId"
+        static let UniqueKey = "uniqueKey"
+        static let UpdatedAt = "updatedAt"
     }
 }

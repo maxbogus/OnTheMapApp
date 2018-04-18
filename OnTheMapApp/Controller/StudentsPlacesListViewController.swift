@@ -29,7 +29,7 @@ class StudentsPlacesListViewController: UITableViewController {
                     self.uiTableView.reloadData()
                 }
             } else {
-                let alert = UIAlertController(title: "Error", message: error ?? "empty error", preferredStyle: UIAlertControllerStyle.alert)
+                let alert = UIAlertController(title: "Error", message: "\(error)", preferredStyle: UIAlertControllerStyle.alert)
                 
                 // add an action (button)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
@@ -51,7 +51,7 @@ extension StudentsPlacesListViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as UITableViewCell?
         
         /* Set cell defaults */
-        cell?.textLabel!.text = location.title
+        cell?.textLabel!.text = location.firstName
     
         return cell!
     }

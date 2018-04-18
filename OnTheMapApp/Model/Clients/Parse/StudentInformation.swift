@@ -9,26 +9,32 @@
 struct StudentInformation {
     
     // MARK: Properties
-    
-    let title: String
-    let id: Int
-    // "createdAt": "2015-02-25T01:10:38.103Z",
-    //"firstName": "Jarrod",
-    //"lastName": "Parkes",
-    //"latitude": 34.7303688,
-    //"longitude": -86.5861037,
-    //"mapString": "Huntsville, Alabama ",
-    //"mediaURL": "https://www.linkedin.com/in/jarrodparkes",
-    //"objectId": "JhOtcRkxsh",
-    //"uniqueKey": "996618664",
-    //"updatedAt": "2015-03-09T22:04:50.315Z"
+
+    let createdAt: String
+    let firstName: String
+    let lastName: String
+    let latitude: Float
+    let longitude: Float
+    let mapString: String
+    let mediaUrl: String
+    let objectId: String
+    let uniqueKey: String
+    let updatedAt: String
     
     // MARK: Initializers
     
     // construct a StudentInformation from a dictionary
     init(dictionary: [String:AnyObject]) {
-        title = dictionary[ParseClient.JSONResponseKeys.MovieTitle] as! String
-        id = dictionary[ParseClient.JSONResponseKeys.MovieID] as! Int
+        createdAt = dictionary[ParseClient.JSONResponseKeys.CreatedAt] as! String
+        firstName = dictionary[ParseClient.JSONResponseKeys.FirstName] as! String
+        lastName = dictionary[ParseClient.JSONResponseKeys.LastName] as! String
+        latitude = dictionary[ParseClient.JSONResponseKeys.Latitude] as! Float
+        longitude = dictionary[ParseClient.JSONResponseKeys.Longitude] as! Float
+        mapString = dictionary[ParseClient.JSONResponseKeys.MapString] as! String
+        mediaUrl = dictionary[ParseClient.JSONResponseKeys.MediaURL] as! String
+        objectId = dictionary[ParseClient.JSONResponseKeys.ObjectId] as! String
+        uniqueKey = dictionary[ParseClient.JSONResponseKeys.UniqueKey] as! String
+        updatedAt = dictionary[ParseClient.JSONResponseKeys.UpdatedAt] as! String
     }
     
     static func studentsFromResults(_ results: [[String:AnyObject]]) -> [StudentInformation] {
@@ -49,5 +55,5 @@ struct StudentInformation {
 extension StudentInformation: Equatable {}
 
 func ==(lhs: StudentInformation, rhs: StudentInformation) -> Bool {
-    return lhs.id == rhs.id
+    return lhs.uniqueKey == rhs.uniqueKey
 }
