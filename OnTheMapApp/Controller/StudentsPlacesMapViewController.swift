@@ -14,6 +14,33 @@ class StudentsPlacesMapViewController: UIViewController, MKMapViewDelegate {
     var locations = [StudentInformation]()
     @IBOutlet weak var mkMapView: MKMapView!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        //MIRACLE HAPPENS HERE
+        mkMapView.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        ParseClient.sharedInstance().getStudentLocations() { (students, error) in
+            if let students = students {
+                self.locations = students
+                performUIUpdatesOnMain {
+                    self.populateData()
+                }
+            } else {
+                let alert = UIAlertController(title: "Error", message: "\(error)", preferredStyle: UIAlertControllerStyle.alert)
+                
+                // add an action (button)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                
+                // show the alert
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
+    }
+    
     func populateData() {
         // The "locations" array is an array of dictionary objects that are similar to the JSON
         // data that you can download from parse.
@@ -56,27 +83,6 @@ class StudentsPlacesMapViewController: UIViewController, MKMapViewDelegate {
         self.mkMapView.addAnnotations(annotations)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        ParseClient.sharedInstance().getStudentLocations() { (students, error) in
-            if let students = students {
-                self.locations = students
-                performUIUpdatesOnMain {
-                    self.populateData()
-                }
-            } else {
-                let alert = UIAlertController(title: "Error", message: "\(error)", preferredStyle: UIAlertControllerStyle.alert)
-                
-                // add an action (button)
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                
-                // show the alert
-                self.present(alert, animated: true, completion: nil)
-            }
-        }
-    }
-    
     // MARK: - MKMapViewDelegate
     
     // Here we create a view with a "right callout accessory view". You might choose to look into other
@@ -108,7 +114,8 @@ class StudentsPlacesMapViewController: UIViewController, MKMapViewDelegate {
         if control == view.rightCalloutAccessoryView {
             let app = UIApplication.shared
             if let toOpen = view.annotation?.subtitle! {
-                app.openURL(URL(string: toOpen)!)
+//                app.openURL(URL(string: toOpen)!)
+                app.open(URL(string: toOpen)!, options: [:], completionHandler: nil)
             }
         }
     }
