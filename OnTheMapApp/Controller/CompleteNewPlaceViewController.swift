@@ -20,4 +20,15 @@ class CompleteNewPlaceViewController: UIViewController {
     @IBAction func finishAdd(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let alert = UIAlertController(title: "Error", message: "\(ParseClient.sharedInstance().coordinate) \(ParseClient.sharedInstance().url)", preferredStyle: UIAlertControllerStyle.alert)
+        
+        // add an action (button)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
+    }
 }

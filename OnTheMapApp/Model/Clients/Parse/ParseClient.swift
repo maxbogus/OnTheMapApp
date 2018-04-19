@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 // MARK: - ParseClient: NSObject
 
@@ -18,6 +19,8 @@ class ParseClient : NSObject {
     var session = URLSession.shared
     
     var locations = [StudentInformation]()
+    var coordinate: CLLocation?
+    var url: String = ""
     
     // authentication state
     var requestToken: String? = nil

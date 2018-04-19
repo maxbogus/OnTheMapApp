@@ -11,11 +11,6 @@ import UIKit
 class StudentsPlacesListViewController: UITableViewController {
     @IBOutlet weak var uiTableView: UITableView!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         

@@ -242,6 +242,7 @@
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="addLocationButton" destination="Qbx-v3-Wfj" id="trK-fY-ddU"/>
                         <outlet property="labelTextField" destination="xbN-Dd-3NH" id="NhD-2E-yHB"/>
                         <outlet property="linkTextField" destination="aBP-uf-2uk" id="fxT-3T-r2P"/>
                         <outlet property="locationTextField" destination="cR2-1M-FKe" id="ej6-jy-EOc"/>
