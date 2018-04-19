@@ -48,7 +48,6 @@ extension StudentsPlacesListViewController {
         /* Get cell type */
         let cellReuseIdentifier = "StudentsMarksCell"
         let location = locations[(indexPath as NSIndexPath).row]
-        print(location as Any)
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as UITableViewCell?
         
         /* Set cell defaults */
@@ -71,14 +70,6 @@ extension StudentsPlacesListViewController {
         if let url = location.mediaUrl {
             let udacityUrl = NSURL(string: url)! as URL
             UIApplication.shared.open(udacityUrl, options: [:], completionHandler: nil)
-        } else {
-            let alert = UIAlertController(title: "Error", message: "No url provided", preferredStyle: UIAlertControllerStyle.alert)
-            
-            // add an action (button)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-            
-            // show the alert
-            self.present(alert, animated: true, completion: nil)
         }
     }
     
