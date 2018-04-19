@@ -48,11 +48,17 @@ extension StudentsPlacesListViewController {
         /* Get cell type */
         let cellReuseIdentifier = "StudentsMarksCell"
         let location = locations[(indexPath as NSIndexPath).row]
+        print(location as Any)
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as UITableViewCell?
         
         /* Set cell defaults */
-        cell?.textLabel!.text = location.firstName
-    
+        cell?.textLabel!.text = "\(location.firstName!) \(location.lastName!)"
+        if let location = location.mediaUrl {
+            cell?.detailTextLabel?.text = location 
+        } else {
+            cell?.detailTextLabel?.text = ""
+        }
+        
         return cell!
     }
     
@@ -61,8 +67,19 @@ extension StudentsPlacesListViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let udacityUrl = NSURL(string: "https://www.udacity.com/")! as URL
-        UIApplication.shared.open(udacityUrl, options: [:], completionHandler: nil)
+        let location = locations[(indexPath as NSIndexPath).row]
+        if let url = location.mediaUrl {
+            let udacityUrl = NSURL(string: url)! as URL
+            UIApplication.shared.open(udacityUrl, options: [:], completionHandler: nil)
+        } else {
+            let alert = UIAlertController(title: "Error", message: "No url provided", preferredStyle: UIAlertControllerStyle.alert)
+            
+            // add an action (button)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            
+            // show the alert
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

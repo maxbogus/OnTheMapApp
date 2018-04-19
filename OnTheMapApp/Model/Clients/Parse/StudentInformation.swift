@@ -10,31 +10,31 @@ struct StudentInformation {
     
     // MARK: Properties
 
-    let createdAt: String
-    let firstName: String
-    let lastName: String
-    let latitude: Float
-    let longitude: Float
-    let mapString: String
-    let mediaUrl: String
-    let objectId: String
-    let uniqueKey: String
-    let updatedAt: String
+    let createdAt: String?
+    let firstName: String?
+    let lastName: String?
+    let latitude: Double?
+    let longitude: Double?
+    let mapString: String?
+    let mediaUrl: String?
+    let objectId: String?
+    let uniqueKey: String?
+    let updatedAt: String?
     
     // MARK: Initializers
     
     // construct a StudentInformation from a dictionary
     init(dictionary: [String:AnyObject]) {
-        createdAt = dictionary[ParseClient.JSONResponseKeys.CreatedAt] as! String
-        firstName = dictionary[ParseClient.JSONResponseKeys.FirstName] as! String
-        lastName = dictionary[ParseClient.JSONResponseKeys.LastName] as! String
-        latitude = dictionary[ParseClient.JSONResponseKeys.Latitude] as! Float
-        longitude = dictionary[ParseClient.JSONResponseKeys.Longitude] as! Float
-        mapString = dictionary[ParseClient.JSONResponseKeys.MapString] as! String
-        mediaUrl = dictionary[ParseClient.JSONResponseKeys.MediaURL] as! String
-        objectId = dictionary[ParseClient.JSONResponseKeys.ObjectId] as! String
-        uniqueKey = dictionary[ParseClient.JSONResponseKeys.UniqueKey] as! String
-        updatedAt = dictionary[ParseClient.JSONResponseKeys.UpdatedAt] as! String
+        createdAt = dictionary[ParseClient.JSONResponseKeys.CreatedAt] as? String
+        firstName = dictionary[ParseClient.JSONResponseKeys.FirstName] as? String
+        lastName = dictionary[ParseClient.JSONResponseKeys.LastName] as? String
+        latitude = dictionary[ParseClient.JSONResponseKeys.Latitude] as? Double
+        longitude = dictionary[ParseClient.JSONResponseKeys.Longitude] as? Double
+        mapString = dictionary[ParseClient.JSONResponseKeys.MapString] as? String
+        mediaUrl = dictionary[ParseClient.JSONResponseKeys.MediaURL] as? String
+        objectId = dictionary[ParseClient.JSONResponseKeys.ObjectId] as? String
+        uniqueKey = dictionary[ParseClient.JSONResponseKeys.UniqueKey] as? String
+        updatedAt = dictionary[ParseClient.JSONResponseKeys.UpdatedAt] as? String
     }
     
     static func studentsFromResults(_ results: [[String:AnyObject]]) -> [StudentInformation] {
