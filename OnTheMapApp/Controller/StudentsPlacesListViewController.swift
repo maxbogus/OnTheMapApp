@@ -9,9 +9,6 @@
 import UIKit
 
 class StudentsPlacesListViewController: UITableViewController {
-    
-    var locations = [StudentInformation]()
-    
     @IBOutlet weak var uiTableView: UITableView!
     
     override func viewDidLoad() {
@@ -24,7 +21,7 @@ class StudentsPlacesListViewController: UITableViewController {
         
         ParseClient.sharedInstance().getStudentLocations() { (students, error) in
             if let students = students {
-                self.locations = students
+                ParseClient.sharedInstance().locations = students
                 performUIUpdatesOnMain {
                     self.uiTableView.reloadData()
                 }
@@ -47,7 +44,7 @@ extension StudentsPlacesListViewController {
         
         /* Get cell type */
         let cellReuseIdentifier = "StudentsMarksCell"
-        let location = locations[(indexPath as NSIndexPath).row]
+        let location = ParseClient.sharedInstance().locations[(indexPath as NSIndexPath).row]
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as UITableViewCell?
         
         /* Set cell defaults */
@@ -62,11 +59,11 @@ extension StudentsPlacesListViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return locations.count
+        return ParseClient.sharedInstance().locations.count
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let location = locations[(indexPath as NSIndexPath).row]
+        let location = ParseClient.sharedInstance().locations[(indexPath as NSIndexPath).row]
         if let url = location.mediaUrl {
             let udacityUrl = NSURL(string: url)! as URL
             UIApplication.shared.open(udacityUrl, options: [:], completionHandler: nil)

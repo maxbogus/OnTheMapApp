@@ -17,6 +17,8 @@ class ParseClient : NSObject {
     // shared session
     var session = URLSession.shared
     
+    var locations = [StudentInformation]()
+    
     // authentication state
     var requestToken: String? = nil
     var sessionID: String? = nil

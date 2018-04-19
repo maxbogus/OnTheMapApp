@@ -11,12 +11,10 @@ import MapKit
 
 class StudentsPlacesMapViewController: UIViewController, MKMapViewDelegate {
     
-    var locations = [StudentInformation]()
     @IBOutlet weak var mkMapView: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //MIRACLE HAPPENS HERE
         mkMapView.delegate = self
     }
     
@@ -25,7 +23,7 @@ class StudentsPlacesMapViewController: UIViewController, MKMapViewDelegate {
         
         ParseClient.sharedInstance().getStudentLocations() { (students, error) in
             if let students = students {
-                self.locations = students
+                ParseClient.sharedInstance().locations = students
                 performUIUpdatesOnMain {
                     self.populateData()
                 }
@@ -53,7 +51,7 @@ class StudentsPlacesMapViewController: UIViewController, MKMapViewDelegate {
         // to create map annotations. This would be more stylish if the dictionaries were being
         // used to create custom structs. Perhaps StudentLocation structs.
         
-        for dictionary in locations {
+        for dictionary in ParseClient.sharedInstance().locations {
             
             // Notice that the float values are being used to create CLLocationDegree values.
             // This is a version of the Double type.
@@ -114,7 +112,6 @@ class StudentsPlacesMapViewController: UIViewController, MKMapViewDelegate {
         if control == view.rightCalloutAccessoryView {
             let app = UIApplication.shared
             if let toOpen = view.annotation?.subtitle! {
-//                app.openURL(URL(string: toOpen)!)
                 app.open(URL(string: toOpen)!, options: [:], completionHandler: nil)
             }
         }
