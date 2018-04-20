@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A5048C7208AB1F300D26823 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5048C6208AB1F300D26823 /* UIButton.swift */; };
 		4A7628CA206DA09F00C5D9C5 /* AddNewPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7628C9206DA09F00C5D9C5 /* AddNewPlaceViewController.swift */; };
 		4A7628CC206DA0D200C5D9C5 /* StudentsPlacesMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7628CB206DA0D200C5D9C5 /* StudentsPlacesMapViewController.swift */; };
 		4A7628CE206DA0FC00C5D9C5 /* StudentsPlacesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7628CD206DA0FC00C5D9C5 /* StudentsPlacesListViewController.swift */; };
@@ -47,6 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4A5048C6208AB1F300D26823 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		4A7628C9206DA09F00C5D9C5 /* AddNewPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewPlaceViewController.swift; sourceTree = "<group>"; };
 		4A7628CB206DA0D200C5D9C5 /* StudentsPlacesMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsPlacesMapViewController.swift; sourceTree = "<group>"; };
 		4A7628CD206DA0FC00C5D9C5 /* StudentsPlacesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsPlacesListViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +102,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A5048C5208AB1DF00D26823 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4A5048C6208AB1F300D26823 /* UIButton.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		4A8EA60320630549004F6713 = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +133,7 @@
 		4A8EA60E20630549004F6713 /* OnTheMapApp */ = {
 			isa = PBXGroup;
 			children = (
+				4A5048C5208AB1DF00D26823 /* Extensions */,
 				4A8EA60F20630549004F6713 /* AppDelegate.swift */,
 				4AF0C2D9206AF62400172F3E /* GCDBlackBox.swift */,
 				4AF0C2D4206AF4F300172F3E /* Model */,
@@ -369,6 +380,7 @@
 				4A8EA61220630549004F6713 /* LoginViewController.swift in Sources */,
 				4A7628CA206DA09F00C5D9C5 /* AddNewPlaceViewController.swift in Sources */,
 				4AF0C2DA206AF62400172F3E /* GCDBlackBox.swift in Sources */,
+				4A5048C7208AB1F300D26823 /* UIButton.swift in Sources */,
 				4A985C9C207C2C380023BE5A /* CompleteNewPlaceViewController.swift in Sources */,
 				4A7628CE206DA0FC00C5D9C5 /* StudentsPlacesListViewController.swift in Sources */,
 				4A7628CC206DA0D200C5D9C5 /* StudentsPlacesMapViewController.swift in Sources */,

@@ -17,6 +17,7 @@ class AddNewPlaceViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var addLocationButton: UIButton!
     
     var url: String = ""
+    lazy var geocoder = CLGeocoder()
     
     @IBAction func cancel(_ sender: Any) {
         locationTextField.text = ""
@@ -24,11 +25,7 @@ class AddNewPlaceViewController: UIViewController, UITextFieldDelegate {
         labelTextField.text = ""
         dismiss(animated: true, completion: nil)
     }
-    
-    lazy var geocoder = CLGeocoder()
-    // Create the Activity Indicator
-    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-    
+
     @IBAction func addLocation(_ sender: Any) {
         
         if let location = locationTextField.text, let link = linkTextField.text {
@@ -40,8 +37,7 @@ class AddNewPlaceViewController: UIViewController, UITextFieldDelegate {
                 self.processResponse(withPlacemarks: placemarks, error: error)
             }
             
-            // Update View
-            addLocationButton.isHidden = true
+            addLocationButton.loadingIndicator(true)
 
         } else {
             labelTextField.text = "location or link doesn't added"
@@ -62,7 +58,7 @@ class AddNewPlaceViewController: UIViewController, UITextFieldDelegate {
     
     private func processResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?) {
         // Update View
-        addLocationButton.isHidden = false
+        addLocationButton.loadingIndicator(false)
         
         if let error = error {
             print("Unable to Forward Geocode Address (\(error))")
@@ -88,4 +84,3 @@ class AddNewPlaceViewController: UIViewController, UITextFieldDelegate {
         }
     }
 }
-

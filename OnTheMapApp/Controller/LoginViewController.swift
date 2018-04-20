@@ -10,15 +10,16 @@ import UIKit
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
+    @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    
     @IBOutlet weak var messageLabel: UILabel!
     
     @IBAction func loginAction(_ sender: Any) {
         let params = ["email": emailTextField.text,
                       "password": passwordTextField.text
         ]
+        loginButton.loadingIndicator(true)
         UdacityClient.sharedInstance().authenticateWithViewController(self, params as [String : AnyObject]) { (success, errorString) in
             performUIUpdatesOnMain {
                 if success {
@@ -47,10 +48,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         if let errorString = errorString {
             messageLabel.text = errorString
         }
+        loginButton.loadingIndicator(false)
     }
     
     private func completeLogin() {
         messageLabel.text = ""
+        loginButton.loadingIndicator(false)
         let controller = storyboard!.instantiateViewController(withIdentifier: "NavigationViewController") as! UINavigationController
         present(controller, animated: true, completion: nil)
     }

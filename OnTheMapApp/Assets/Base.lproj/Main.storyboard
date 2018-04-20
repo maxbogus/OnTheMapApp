@@ -63,7 +63,7 @@
                                     <action selector="signUpFunction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZyK-yf-Jpw"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-u" translatesAutoresizingMaskIntoConstraints="NO" id="Flp-8P-bQs">
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-u" translatesAutoresizingMaskIntoConstraints="NO" id="Flp-8P-bQs">
                                 <rect key="frame" x="67.5" y="44" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="Z4H-Nq-bkb"/>
@@ -97,6 +97,7 @@
                     </view>
                     <connections>
                         <outlet property="emailTextField" destination="gQa-gG-HI4" id="TYj-yq-83f"/>
+                        <outlet property="loginButton" destination="EuN-Kv-vMJ" id="mW1-oF-0Q2"/>
                         <outlet property="messageLabel" destination="0hr-TP-9Tb" id="WT4-TL-ILR"/>
                         <outlet property="passwordTextField" destination="2t0-DB-Aji" id="rd6-tE-fMy"/>
                     </connections>
@@ -121,7 +122,7 @@
             </objects>
             <point key="canvasLocation" x="890" y="77"/>
         </scene>
-        <!--Students Places Map View Controller-->
+        <!--Map-->
         <scene sceneID="Iot-yu-G50">
             <objects>
                 <viewController id="IEe-qz-kpV" customClass="StudentsPlacesMapViewController" customModule="OnTheMapApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -137,7 +138,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="83h-Ta-2Tj"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="icon_mapview-deselected" selectedImage="icon_mapview-selected" id="Vlg-4N-tQs"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="icon_mapview-deselected" selectedImage="icon_mapview-selected" id="Vlg-4N-tQs"/>
                     <connections>
                         <outlet property="mkMapView" destination="vtN-Jg-eF5" id="sXs-Po-iBP"/>
                     </connections>
@@ -209,7 +210,7 @@
                                     <action selector="addLocation:" destination="Qk9-Q9-7iO" eventType="touchUpInside" id="9IS-bS-erc"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_world" translatesAutoresizingMaskIntoConstraints="NO" id="EhH-ws-hEw">
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_world" translatesAutoresizingMaskIntoConstraints="NO" id="EhH-ws-hEw">
                                 <rect key="frame" x="67" y="108" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="bjz-ai-XRT"/>
@@ -301,6 +302,7 @@
                         <viewLayoutGuide key="safeArea" id="7tK-xf-4cQ"/>
                     </view>
                     <connections>
+                        <outlet property="finishButton" destination="eBP-Cj-T3d" id="QUJ-6N-OpD"/>
                         <outlet property="map" destination="K6D-T4-dnO" id="mbD-gd-xdh"/>
                     </connections>
                 </viewController>
@@ -345,7 +347,7 @@
             </objects>
             <point key="canvasLocation" x="1649" y="77"/>
         </scene>
-        <!--Students Places List View Controller-->
+        <!--Table-->
         <scene sceneID="Gkt-qP-IHL">
             <objects>
                 <tableViewController id="4VE-Ed-Zag" customClass="StudentsPlacesListViewController" customModule="OnTheMapApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -388,7 +390,7 @@
                             <outlet property="delegate" destination="4VE-Ed-Zag" id="7qs-I8-wBv"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="" image="icon_listview-deselected" selectedImage="icon_listview-selected" id="jpU-IM-3kg"/>
+                    <tabBarItem key="tabBarItem" title="Table" image="icon_listview-deselected" selectedImage="icon_listview-selected" id="jpU-IM-3kg"/>
                     <connections>
                         <outlet property="uiTableView" destination="ikk-AN-A8c" id="Akm-ya-eQT"/>
                     </connections>

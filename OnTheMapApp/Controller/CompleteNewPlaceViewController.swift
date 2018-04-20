@@ -14,17 +14,25 @@ class CompleteNewPlaceViewController: UIViewController {
     @IBOutlet weak var map: MKMapView!
     var location: CLLocation!
     var url: String = ""
+    @IBOutlet weak var finishButton: UIButton!
     
     @IBAction func returnBack(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func finishAdd(_ sender: Any) {
+        finishButton.loadingIndicator(true)
         // get location for user data
+        let exist = true
+        
+        
         // if exist
-        // - update location
-        // else
-        // - create location
+        if (exist) {
+            // - update location
+        } else {
+            // - create location
+        }
+        finishButton.loadingIndicator(false)
         dismiss(animated: true, completion: nil)
     }
     
