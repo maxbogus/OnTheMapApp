@@ -16,6 +16,8 @@ class AddNewPlaceViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var labelTextField: UILabel!
     @IBOutlet weak var addLocationButton: UIButton!
     
+    var url: String = ""
+    
     @IBAction func cancel(_ sender: Any) {
         locationTextField.text = ""
         linkTextField.text = ""
@@ -24,11 +26,14 @@ class AddNewPlaceViewController: UIViewController, UITextFieldDelegate {
     }
     
     lazy var geocoder = CLGeocoder()
+    // Create the Activity Indicator
+    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     
     @IBAction func addLocation(_ sender: Any) {
         
         if let location = locationTextField.text, let link = linkTextField.text {
-            ParseClient.sharedInstance().url = link
+            url = link
+            
             // Geocode Address String
             geocoder.geocodeAddressString(location) { (placemarks, error) in
                 // Process Response
@@ -72,8 +77,9 @@ class AddNewPlaceViewController: UIViewController, UITextFieldDelegate {
             
             if let location = location {
                 if (CLLocationCoordinate2DIsValid(location.coordinate)) {
-                    ParseClient.sharedInstance().coordinate = location
-                    let controller = storyboard!.instantiateViewController(withIdentifier: "CompleteNewPlaceViewControllerUI")
+                    let controller = storyboard!.instantiateViewController(withIdentifier: "CompleteNewPlaceViewControllerUI") as! CompleteNewPlaceViewController
+                    controller.location = location
+                    controller.url = url
                     present(controller, animated: true, completion: nil)
                 }                
             } else {

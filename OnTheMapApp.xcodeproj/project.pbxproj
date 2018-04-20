@@ -155,6 +155,7 @@
 		4AF0C2D4206AF4F300172F3E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4AF0C2DE206C51B100172F3E /* StudentInformation.swift */,
 				4AF0C2DB206AF72800172F3E /* Clients */,
 			);
 			path = Model;
@@ -223,7 +224,6 @@
 				4AF0C2E0206C526C00172F3E /* ParseClient.swift */,
 				4AF0C2E4206C52D100172F3E /* ParseConstants.swift */,
 				4AF0C2E2206C52BC00172F3E /* ParseConvenience.swift */,
-				4AF0C2DE206C51B100172F3E /* StudentInformation.swift */,
 			);
 			path = Parse;
 			sourceTree = "<group>";
