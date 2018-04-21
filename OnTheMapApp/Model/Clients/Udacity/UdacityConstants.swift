@@ -58,6 +58,12 @@ extension UdacityClient {
         
         // MARK: Account
         static let UserID = "id"
+        
+        // MARK: Get User Data
+        static let UserResults = "user"
+        static let FirstName = "first_name"
+        static let LastName = "last_name"
+        static let NickName = "nickname"
     
     }
 }

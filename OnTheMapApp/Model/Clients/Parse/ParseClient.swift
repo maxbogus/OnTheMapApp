@@ -83,11 +83,10 @@ class ParseClient : NSObject {
     
     // MARK: POST
     
-    func taskForPOSTMethod(_ method: String, parameters: [String:AnyObject], jsonBody: String, completionHandlerForPOST: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
+    func taskForPOSTMethod(_ method: String, parameters: [String:AnyObject], httpBody: String, completionHandlerForPOST: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
         
         /* 1. Set the parameters */
         var parametersWithApiKey = parameters
-        
         /* 2/3. Build the URL, Configure the request */
         let request = NSMutableURLRequest(url: parseURLFromParameters(parametersWithApiKey, withPathExtension: method))
         request.httpMethod = "POST"
@@ -95,7 +94,7 @@ class ParseClient : NSObject {
         request.addValue("\(Constants.ApiKey)", forHTTPHeaderField: "X-Parse-REST-API-Key")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = jsonBody.data(using: String.Encoding.utf8)
+        request.httpBody = httpBody.data(using: String.Encoding.utf8)
         
         /* 4. Make the request */
         let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
@@ -136,15 +135,15 @@ class ParseClient : NSObject {
     
     // MARK: PUT
     
-    func taskForPUTMethod(_ method: String, parameters: [String:AnyObject], completionHandlerForPUT: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
+    func taskForPUTMethod(_ method: String, parameters: [String:AnyObject], httpBody: String, completionHandlerForPUT: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
         
         /* 1. Set the parameters */
         var parametersWithApiKey = parameters
-        
         /* 2/3. Build the URL, Configure the request */
         let request = NSMutableURLRequest(url: parseURLFromParameters(parametersWithApiKey, withPathExtension: method))
         request.addValue("\(Constants.AppID)", forHTTPHeaderField: "X-Parse-Application-Id")
         request.addValue("\(Constants.ApiKey)", forHTTPHeaderField: "X-Parse-REST-API-Key")
+        request.httpBody = httpBody.data(using: String.Encoding.utf8)
         
         /* 4. Make the request */
         let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
