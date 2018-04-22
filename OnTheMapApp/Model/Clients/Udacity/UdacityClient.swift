@@ -36,8 +36,9 @@ class UdacityClient : NSObject {
         let request = NSMutableURLRequest(url: udacityURLFromParameters(parameters, withPathExtension: method))
         
         /* 4. Make the request */
+        print(request)
         let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
-            
+            print("b")
             func sendError(_ error: String) {
                 print(error)
                 let userInfo = [NSLocalizedDescriptionKey : error]
@@ -62,16 +63,19 @@ class UdacityClient : NSObject {
                 return
             }
             
+            print(data)
+            print("c")
             /* 5/6. Parse the data and use the data (happens in completion handler) */
             self.convertDataWithCompletionHandler(data, completionHandlerForConvertData: completionHandlerForGET)
         }
+        print("d")
         
         /* 7. Start the request */
         task.resume()
         
         return task
     }
-
+    
     // MARK: POST
     
     func taskForPOSTMethod(_ method: String, parameters: [String:AnyObject]? = nil, jsonBody: String, completionHandlerForPOST: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
@@ -90,7 +94,7 @@ class UdacityClient : NSObject {
             func sendError(_ error: String) {
                 print(error)
                 let userInfo = [NSLocalizedDescriptionKey : error]
-                completionHandlerForPOST(nil, NSError(domain: "taskForGETMethod", code: 1, userInfo: userInfo))
+                completionHandlerForPOST(nil, NSError(domain: "taskForPOSTMethod", code: 1, userInfo: userInfo))
             }
             
             /* GUARD: Was there an error? */
@@ -187,6 +191,7 @@ class UdacityClient : NSObject {
         do {
             if let data = String(bytes: data, encoding: String.Encoding.utf8) {
                 let correctedData = String(data.dropFirst(5))
+                print(correctedData)
                 let data = correctedData.data(using: .utf8)!
                 parsedResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as AnyObject
             }
@@ -206,6 +211,7 @@ class UdacityClient : NSObject {
         components.host = UdacityClient.Constants.ApiHost
         components.path = UdacityClient.Constants.ApiPath + (withPathExtension ?? "")
         components.queryItems = [URLQueryItem]()
+        print(components)
         
         if let parameters = parameters {
             for (key, value) in parameters {
@@ -213,7 +219,7 @@ class UdacityClient : NSObject {
                 components.queryItems!.append(queryItem)
             }
         }
-        
+        print(components.url!)
         return components.url!
     }
     

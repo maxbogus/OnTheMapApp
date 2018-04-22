@@ -28,40 +28,32 @@ class CompleteNewPlaceViewController: UIViewController {
             if let data = userData {
                 self.userData = data
             } else {
-                let alert = UIAlertController(title: "Error", message: "\(error)", preferredStyle: UIAlertControllerStyle.alert)
-                
-                // add an action (button)
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                
-                // show the alert
-                self.present(alert, animated: true, completion: nil)
+                print("Error. Cannot get userData: \(String(describing: userData))")
             }
         }
+        
+        print(self.userData as Any)
         
         ParseClient.sharedInstance().getStudentLocation() { (location, error) in
             if let location = location {
                 studentLocation = location.first
             } else {
-                let alert = UIAlertController(title: "Error", message: "\(error)", preferredStyle: UIAlertControllerStyle.alert)
-                
-                // add an action (button)
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                
-                // show the alert
-                self.present(alert, animated: true, completion: nil)
+                print("Error. Cannot get studentLocation: \(String(describing: location))")
             }
         }
+        
+        print(studentLocation as Any)
         
         // get location for user data
         // get user data
 
         if (studentLocation != nil) {
             ParseClient.sharedInstance().updateStudentLocation(studentLocation!) { (result, error) in
-                if let result = result {
+                if result != nil {
                     self.finishButton.loadingIndicator(false)
                     self.dismiss(animated: true, completion: nil)
                 } else {
-                    let alert = UIAlertController(title: "Error", message: "\(error)", preferredStyle: UIAlertControllerStyle.alert)
+                    let alert = UIAlertController(title: "Error", message: "\(String(describing: error))", preferredStyle: UIAlertControllerStyle.alert)
                     
                     // add an action (button)
                     alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))

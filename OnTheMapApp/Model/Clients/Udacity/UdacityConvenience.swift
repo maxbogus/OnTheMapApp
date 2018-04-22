@@ -59,7 +59,7 @@ extension UdacityClient {
         let _ = taskForPOSTMethod(Methods.AuthenticationSession, parameters: nil, jsonBody: jsonBody) { (results, error) in
             
             /* 3. Send the desired value(s) to completion handler */
-            if let error = error {
+            if error != nil {
                 completionHandlerForSession(false, nil, nil, "Login Failed.")
             } else {
                 if let session = results?[UdacityClient.JSONResponseKeys.Session] as? NSDictionary, let account = results?[UdacityClient.JSONResponseKeys.Account] as? NSDictionary {
@@ -82,21 +82,21 @@ extension UdacityClient {
     func getPublicUserData(_ completionHandlerForGetPublicUserData: @escaping (_ result: NSDictionary?, _ error: NSError?) -> Void) {
         
         /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
-        let parameters = [UdacityClient.ParameterKeys.SessionID: UdacityClient.sharedInstance().sessionID!]
-        var mutableMethod: String = Methods.GetUsers
-//        mutableMethod = substituteKeyInMethod(mutableMethod, key: UdacityClient.URLKeys.UserID, value: String(UdacityClient.sharedInstance().userID!))!
-        
+        let mutableMethod: String = "\(Methods.GetUsers)/\(String(UdacityClient.sharedInstance().userID!))"
+        print(mutableMethod)
         /* 2. Make the request */
-        let _ = taskForGETMethod(mutableMethod, parameters: parameters as [String:AnyObject]) { (results, error) in
-            
+        let _ = taskForGETMethod(mutableMethod) { (results, error) in
+            print(results as Any)
+            print(error as Any)
             /* 3. Send the desired value(s) to completion handler */
             if let error = error {
+                print(error as Any)
                 completionHandlerForGetPublicUserData(nil, error)
             } else {
-                
+                print(results as Any)
                 if let results = results?[UdacityClient.JSONResponseKeys.UserResults] as? [[String:AnyObject]] {
-                    
-                    let userData = ["result": "true"]
+                    print(results)
+                    let userData = ["result": results]
                     completionHandlerForGetPublicUserData(userData as NSDictionary, nil)
                 } else {
                     completionHandlerForGetPublicUserData(nil, NSError(domain: "getPublicUserData parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse getPublicUserData"]))

@@ -26,6 +26,12 @@ extension UdacityClient {
         static let GetUsers = "/users"
     }
     
+    // MARK: URL Keys
+    struct URLKeys {
+        static let Query = "where"
+        static let UniqueKey = "uniqueKey"
+    }
+    
     // MARK: Parameter Keys
     struct ParameterKeys {
         static let ApiKey = "api_key"

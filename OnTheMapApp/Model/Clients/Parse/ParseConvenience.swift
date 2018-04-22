@@ -51,12 +51,11 @@ extension ParseClient {
     func getStudentLocation(_ completionHandlerForStudentLocation: @escaping (_ result: [StudentInformation]?, _ error: NSError?) -> Void) {
 
         /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
-        let parameters = [ParameterKeys.Where: "%7B%22uniqueKey%22%3A%221234%22%7D"]
-        var mutableMethod: String = Methods.StudentLocation
-        mutableMethod = substituteKeyInMethod(mutableMethod, key: ParseClient.URLKeys.UserID, value: String(ParseClient.sharedInstance().userID!))!
+        let key = "221234"
+        let parameters = [ParameterKeys.Where: "%7B%22uniqueKey%22%3A%\(key)%22%7D"]
 
         /* 2. Make the request */
-        let _ = taskForGETMethod(mutableMethod, parameters: parameters as [String:AnyObject]) { (results, error) in
+        let _ = taskForGETMethod(Methods.StudentLocation, parameters: parameters as [String:AnyObject]) { (results, error) in
 
             /* 3. Send the desired value(s) to completion handler */
             if let error = error {
