@@ -7,6 +7,7 @@
 //
 class StudentsInformationDataSourse {
     var locations = [StudentInformation]()
+    var currentStudentLocation: StudentInformation?
     
     // MARK: Shared Instance
     class func sharedInstance() -> StudentsInformationDataSourse {

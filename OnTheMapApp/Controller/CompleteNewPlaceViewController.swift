@@ -23,59 +23,12 @@ class CompleteNewPlaceViewController: UIViewController {
     
     @IBAction func finishAdd(_ sender: Any) {
         finishButton.loadingIndicator(true)
-        var studentLocation: StudentInformation?
         UdacityClient.sharedInstance().getPublicUserData() { (userData, error) in
             if let data = userData {
                 self.userData = data as! [String : AnyObject]
+                self.getLocation()
             } else {
                 print("Error. Cannot get userData: \(String(describing: userData))")
-            }
-        }
-        
-        print(self.userData as Any)
-        
-        ParseClient.sharedInstance().getStudentLocation() { (location, error) in
-            if let location = location {
-                studentLocation = location.first
-            } else {
-                print("Error. Cannot get studentLocation: \(String(describing: location))")
-            }
-        }
-        
-        print(studentLocation as Any)
-        
-        // get location for user data
-        // get user data
-
-        if (studentLocation != nil) {
-            ParseClient.sharedInstance().updateStudentLocation(studentLocation!) { (result, error) in
-                if result != nil {
-                    self.finishButton.loadingIndicator(false)
-                    self.dismiss(animated: true, completion: nil)
-                } else {
-                    let alert = UIAlertController(title: "Error", message: "\(String(describing: error))", preferredStyle: UIAlertControllerStyle.alert)
-                    
-                    // add an action (button)
-                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                    
-                    // show the alert
-                    self.present(alert, animated: true, completion: nil)
-                }
-            }
-        } else {
-            ParseClient.sharedInstance().createStudentLocation(studentLocation!) { (result, error) in
-                if let result = result {
-                    self.finishButton.loadingIndicator(false)
-                    self.dismiss(animated: true, completion: nil)
-                } else {
-                    let alert = UIAlertController(title: "Error", message: "\(error)", preferredStyle: UIAlertControllerStyle.alert)
-                    
-                    // add an action (button)
-                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                    
-                    // show the alert
-                    self.present(alert, animated: true, completion: nil)
-                }
             }
         }
     }
@@ -99,5 +52,58 @@ class CompleteNewPlaceViewController: UIViewController {
         pointAnnotation.coordinate = coordinates
         map.addAnnotation(pointAnnotation)
         map.setRegion(region, animated: true)
+    }
+    
+    func getLocation() {
+        print(self.userData as Any)
+        
+        ParseClient.sharedInstance().getStudentLocation() { (location, error) in
+            if let location = location {
+                StudentsInformationDataSourse.sharedInstance().currentStudentLocation = location.first
+                self.completePin()
+            } else {
+                print("Error. Cannot get studentLocation: \(String(describing: location))")
+            }
+        }
+    }
+    
+    func completePin() {
+        
+        print(StudentsInformationDataSourse.sharedInstance().currentStudentLocation as Any)
+        
+        // get location for user data
+        // get user data
+        
+        if (StudentsInformationDataSourse.sharedInstance().currentStudentLocation != nil) {
+            ParseClient.sharedInstance().updateStudentLocation() { (result, error) in
+                if result != nil {
+                    self.finishButton.loadingIndicator(false)
+                    self.dismiss(animated: true, completion: nil)
+                } else {
+                    let alert = UIAlertController(title: "Error", message: "\(String(describing: error))", preferredStyle: UIAlertControllerStyle.alert)
+                    
+                    // add an action (button)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                    
+                    // show the alert
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+        } else {
+            ParseClient.sharedInstance().createStudentLocation() { (result, error) in
+                if result != nil {
+                    self.finishButton.loadingIndicator(false)
+                    self.dismiss(animated: true, completion: nil)
+                } else {
+                    let alert = UIAlertController(title: "Error", message: "\(String(describing: error))", preferredStyle: UIAlertControllerStyle.alert)
+                    
+                    // add an action (button)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                    
+                    // show the alert
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+        }
     }
 }

@@ -15,7 +15,7 @@ class OnTheMapTabViewController: UITabBarController {
             if let students = students {
                 StudentsInformationDataSourse.sharedInstance().locations = students
             } else {
-                let alert = UIAlertController(title: "Error", message: "\(error)", preferredStyle: UIAlertControllerStyle.alert)
+                let alert = UIAlertController(title: "Error", message: "\(String(describing: error))", preferredStyle: UIAlertControllerStyle.alert)
                 
                 // add an action (button)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))

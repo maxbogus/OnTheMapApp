@@ -27,11 +27,8 @@ extension ParseClient {
         /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
         let parameters = [ParameterKeys.Limit: ParameterValues.LimitValue,
                           ParameterKeys.Order: ParameterValues.OrderType]
-        var mutableMethod: String = Methods.StudentLocation
-//        mutableMethod = substituteKeyInMethod(mutableMethod, key: ParseClient.URLKeys.UserID, value: String(ParseClient.sharedInstance().userID!))!
-        
         /* 2. Make the request */
-        let _ = taskForGETMethod(mutableMethod, parameters: parameters as [String:AnyObject]) { (results, error) in
+        let _ = taskForGETMethod(Methods.StudentLocation, parameters: parameters as [String:AnyObject]) { (results, error) in
             
             /* 3. Send the desired value(s) to completion handler */
             if let error = error {
@@ -75,7 +72,7 @@ extension ParseClient {
     }
 
     // MARK: POST Convenience Methods
-    func createStudentLocation(_ student: StudentInformation, completionHandlerForcreateStudentLocation: @escaping (_ result: Bool?, _ error: NSError?) -> Void) {
+    func createStudentLocation(completionHandlerForcreateStudentLocation: @escaping (_ result: Bool?, _ error: NSError?) -> Void) {
         
         /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
         let parameters = [ParameterKeys.Limit: ParameterValues.LimitValue,
@@ -99,7 +96,7 @@ extension ParseClient {
     }
     
     // MARK: PUT Convenience Methods
-    func updateStudentLocation(_ student: StudentInformation, completionHandlerForUpdateStudentLocation: @escaping (_ result: Bool?, _ error: NSError?) -> Void) {
+    func updateStudentLocation(completionHandlerForUpdateStudentLocation: @escaping (_ result: Bool?, _ error: NSError?) -> Void) {
         
         /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
         let parameters = [ParameterKeys.Limit: ParameterValues.LimitValue,
