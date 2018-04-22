@@ -5,6 +5,17 @@
 //  Created by Max Boguslavskiy on 29/03/2018.
 //  Copyright © 2018 Max Boguslavskiy. All rights reserved.
 //
+class StudentsInformationDataSourse {
+    var locations = [StudentInformation]()
+    
+    // MARK: Shared Instance
+    class func sharedInstance() -> StudentsInformationDataSourse {
+        struct Singleton {
+            static var sharedInstance = StudentsInformationDataSourse()
+        }
+        return Singleton.sharedInstance
+    }
+}
 
 struct StudentInformation {
     

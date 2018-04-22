@@ -13,7 +13,7 @@ class OnTheMapTabViewController: UITabBarController {
     @IBAction func refresh(_ sender: Any) {
         ParseClient.sharedInstance().getStudentLocations() { (students, error) in
             if let students = students {
-                ParseClient.sharedInstance().locations = students
+                StudentsInformationDataSourse.sharedInstance().locations = students
             } else {
                 let alert = UIAlertController(title: "Error", message: "\(error)", preferredStyle: UIAlertControllerStyle.alert)
                 

@@ -23,7 +23,7 @@ class StudentsPlacesMapViewController: UIViewController, MKMapViewDelegate {
         
         ParseClient.sharedInstance().getStudentLocations() { (students, error) in
             if let students = students {
-                ParseClient.sharedInstance().locations = students
+                StudentsInformationDataSourse.sharedInstance().locations = students
                 performUIUpdatesOnMain {
                     self.populateData()
                 }
@@ -51,7 +51,7 @@ class StudentsPlacesMapViewController: UIViewController, MKMapViewDelegate {
         // to create map annotations. This would be more stylish if the dictionaries were being
         // used to create custom structs. Perhaps StudentLocation structs.
         
-        for dictionary in ParseClient.sharedInstance().locations {
+        for dictionary in StudentsInformationDataSourse.sharedInstance().locations {
             
             // Notice that the float values are being used to create CLLocationDegree values.
             // This is a version of the Double type.
