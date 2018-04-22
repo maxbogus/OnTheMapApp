@@ -86,16 +86,11 @@ extension UdacityClient {
         print(mutableMethod)
         /* 2. Make the request */
         let _ = taskForGETMethod(mutableMethod) { (results, error) in
-            print(results as Any)
-            print(error as Any)
             /* 3. Send the desired value(s) to completion handler */
             if let error = error {
-                print(error as Any)
                 completionHandlerForGetPublicUserData(nil, error)
             } else {
-                print(results as Any)
-//                if let results = results?[UdacityClient.JSONResponseKeys.UserResults] as? [[String:AnyObject]] {
-                if let results = results?[UdacityClient.JSONResponseKeys.UserResults] {
+                if let results = results?[UdacityClient.JSONResponseKeys.UserResults] as? [String:AnyObject] {
                     print(results as Any)
                     let userData = ["result": results]
                     completionHandlerForGetPublicUserData(userData as NSDictionary, nil)
