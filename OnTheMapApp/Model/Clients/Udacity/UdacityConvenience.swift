@@ -79,21 +79,23 @@ extension UdacityClient {
     
     // MARK: GET Convenience Methods
     
-    func getPublicUserData(_ completionHandlerForGetPublicUserData: @escaping (_ result: NSDictionary?, _ error: NSError?) -> Void) {
+    func getPublicUserData(_ completionHandlerForGetPublicUserData: @escaping (_ result: [String:AnyObject]?, _ error: NSError?) -> Void) {
         
         /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
         let mutableMethod: String = "\(Methods.GetUsers)/\(String(UdacityClient.sharedInstance().userID!))"
-        print(mutableMethod)
         /* 2. Make the request */
         let _ = taskForGETMethod(mutableMethod) { (results, error) in
             /* 3. Send the desired value(s) to completion handler */
             if let error = error {
                 completionHandlerForGetPublicUserData(nil, error)
             } else {
-                if let results = results?[UdacityClient.JSONResponseKeys.UserResults] as? [String:AnyObject] {
-                    print(results as Any)
-                    let userData = ["result": results]
-                    completionHandlerForGetPublicUserData(userData as NSDictionary, nil)
+                if let user = results?[JSONResponseKeys.UserResults] as? [String:AnyObject] {
+                    if let firstName = user[JSONResponseKeys.FirstName], let lastName = user[JSONResponseKeys.LastName], let nickName = user[JSONResponseKeys.NickName] {
+                        let data = [JSONResponseKeys.FirstName: firstName, JSONResponseKeys.LastName: lastName, JSONResponseKeys.NickName: nickName]
+                        completionHandlerForGetPublicUserData(data, nil)
+                    } else {
+                        completionHandlerForGetPublicUserData(nil, NSError(domain: "getPublicUserData parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Couldn't get firstname and lastname"]))
+                    }
                 } else {
                     completionHandlerForGetPublicUserData(nil, NSError(domain: "getPublicUserData parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse getPublicUserData"]))
                 }

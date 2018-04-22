@@ -25,7 +25,7 @@ class CompleteNewPlaceViewController: UIViewController {
         finishButton.loadingIndicator(true)
         UdacityClient.sharedInstance().getPublicUserData() { (userData, error) in
             if let data = userData {
-                self.userData = data as! [String : AnyObject]
+                self.userData = data
                 self.getLocation()
             } else {
                 print("Error. Cannot get userData: \(String(describing: userData))")
@@ -45,9 +45,10 @@ class CompleteNewPlaceViewController: UIViewController {
         let coordinates = self.location.coordinate
         let region = MKCoordinateRegionMake(coordinates, MKCoordinateSpanMake(0.01, 0.01))
         // get first and second from user data
-        let first = "Max"
-        let last = "Bogus"
-        pointAnnotation.title = "\(first) \(last)"
+        let first = userData[UdacityClient.JSONResponseKeys.FirstName]
+        let nick = userData[UdacityClient.JSONResponseKeys.NickName]
+        let last = userData[UdacityClient.JSONResponseKeys.LastName]
+        pointAnnotation.title = "\(String(describing: first)) '\(String(describing: nick))' \(String(describing: last))"
         pointAnnotation.subtitle = url
         pointAnnotation.coordinate = coordinates
         map.addAnnotation(pointAnnotation)
