@@ -37,7 +37,7 @@ extension UdacityClient {
         }
     }
     
-    func logoutWithViewController(_ hostViewController: UIViewController, completionHandlerForAuth: @escaping (_ success: Bool, _ errorString: String?) -> Void) {
+    func logoutWithViewController(_ hostViewController: UIViewController, completionHandlerForAuth: @escaping (_ success: Bool, _ errorString: NSError?) -> Void) {
         
         // get session ID with login and password
         self.deleteSessionID() { (success, sessionID, errorString) in
@@ -51,7 +51,7 @@ extension UdacityClient {
         }
     }
     
-    private func getSessionID(_ params: [String: AnyObject], completionHandlerForSession: @escaping (_ success: Bool, _ sessionID: String?, _ userID: Int?, _ errorString: String?) -> Void) {
+    private func getSessionID(_ params: [String: AnyObject], completionHandlerForSession: @escaping (_ success: Bool, _ sessionID: String?, _ userID: String?, _ errorString: String?) -> Void) {
         
         /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
         let jsonBody = "{\"\(JSONBodyKeys.Udacity)\": {\"\(JSONBodyKeys.Username)\": \"\(params["email"] ?? "email" as AnyObject)\", \"\(JSONBodyKeys.Password)\": \"\(params["password"] ?? "password" as AnyObject)\"}}"
@@ -62,8 +62,8 @@ extension UdacityClient {
             if let error = error {
                 completionHandlerForSession(false, nil, nil, "Login Failed.")
             } else {
-                if let session = results?[UdacityClient.JSONResponseKeys.Session] as? NSDictionary, let accout = results?[UdacityClient.JSONResponseKeys.Account] as? NSDictionary {
-                    if let sessionID = session[UdacityClient.JSONResponseKeys.SessionID] as? String, let userID = session[UdacityClient.JSONResponseKeys.RegisteredKey] as? Int {
+                if let session = results?[UdacityClient.JSONResponseKeys.Session] as? NSDictionary, let account = results?[UdacityClient.JSONResponseKeys.Account] as? NSDictionary {
+                    if let sessionID = session[UdacityClient.JSONResponseKeys.SessionID] as? String, let userID = account[UdacityClient.JSONResponseKeys.RegisteredKey] as? String {
                         completionHandlerForSession(true, sessionID, userID, nil)
                     } else {
                         print("Could not find \(UdacityClient.JSONResponseKeys.SessionID) in \(results!)")
@@ -107,7 +107,7 @@ extension UdacityClient {
     
     // MARK: Delete Convenience Methods
     
-    func deleteSessionID(completionHandlerForSession: @escaping (_ success: Bool, _ sessionID: String?, _ errorString: String?) -> Void) {
+    func deleteSessionID(completionHandlerForSession: @escaping (_ success: Bool, _ sessionID: String?, _ errorString: NSError?) -> Void) {
         
         /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
         /* 2. Make the request */
@@ -115,17 +115,17 @@ extension UdacityClient {
             
             /* 3. Send the desired value(s) to completion handler */
             if error != nil {
-                completionHandlerForSession(false, nil, "delete session failed")
+                completionHandlerForSession(false, nil, error)
             } else {
                 if let session = results?[UdacityClient.JSONResponseKeys.Session] as? NSDictionary {
                     if (session[UdacityClient.JSONResponseKeys.SessionID] as? String) != nil {
                         completionHandlerForSession(true, nil, nil)
                     } else {
                         print("Could not find \(UdacityClient.JSONResponseKeys.SessionID) in \(results!)")
-                        completionHandlerForSession(false, nil, "Login Failed (SessionID).")
+                        completionHandlerForSession(false, nil, NSError(domain: "deleteSessionID parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not find \(UdacityClient.JSONResponseKeys.SessionID)"]))
                     }
                 } else {
-                    completionHandlerForSession(false, nil, "logout failed")
+                    completionHandlerForSession(false, nil, NSError(domain: "deleteSessionID parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse deleteSessionID"]))
                 }
             }
         }
