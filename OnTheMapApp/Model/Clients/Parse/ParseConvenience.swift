@@ -51,7 +51,7 @@ extension ParseClient {
     func getStudentLocation(_ completionHandlerForStudentLocation: @escaping (_ result: [StudentInformation]?, _ error: NSError?) -> Void) {
 
         /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
-        let key = "221234"
+        let key = "\(UdacityClient.sharedInstance().userID!)"
         let parameters = [ParameterKeys.Where: "%7B%22uniqueKey%22%3A%\(key)%22%7D"]
 
         /* 2. Make the request */
@@ -63,11 +63,12 @@ extension ParseClient {
             } else {
 
                 if let results = results?[ParseClient.JSONResponseKeys.StudentsResults] as? [[String:AnyObject]] {
+                    print(results)
 
                     let students = StudentInformation.studentsFromResults(results)
                     completionHandlerForStudentLocation(students, nil)
                 } else {
-                    completionHandlerForStudentLocation(nil, NSError(domain: "getWatchlistMovies parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse getWatchlistMovies"]))
+                    completionHandlerForStudentLocation(nil, NSError(domain: "getStudentLocation parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse getStudentLocation"]))
                 }
             }
         }

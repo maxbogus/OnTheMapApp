@@ -42,9 +42,17 @@ class AddNewPlaceViewController: UIViewController, UITextFieldDelegate {
         } else {
             labelTextField.text = "location or link doesn't added"
         }
-
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        subscribeToKeyboardNotifications()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        unsubscribeFromKeyboardNotifications()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         locationTextField.delegate = self
@@ -82,5 +90,32 @@ class AddNewPlaceViewController: UIViewController, UITextFieldDelegate {
                 labelTextField.text  = "No Matching Location Found"
             }
         }
+    }
+    
+    @objc func keyboardWillShow(_ notification:Notification) {
+        if linkTextField.isFirstResponder {
+            view.frame.origin.y -= self.getKeyboardHeight(notification)
+        }
+    }
+    
+    @objc func keyboardWillHide(_ notification:Notification) {
+        if linkTextField.isFirstResponder {
+            view.frame.origin.y = 0
+        }
+    }
+    
+    func getKeyboardHeight(_ notification:Notification) -> CGFloat {
+        let userInfo = notification.userInfo
+        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue // of CGRect
+        return keyboardSize.cgRectValue.height
+    }
+    
+    @objc func subscribeToKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
+    }
+    
+    func unsubscribeFromKeyboardNotifications() {
+        NotificationCenter.default.removeObserver(self)
     }
 }

@@ -94,8 +94,9 @@ extension UdacityClient {
                 completionHandlerForGetPublicUserData(nil, error)
             } else {
                 print(results as Any)
-                if let results = results?[UdacityClient.JSONResponseKeys.UserResults] as? [[String:AnyObject]] {
-                    print(results)
+//                if let results = results?[UdacityClient.JSONResponseKeys.UserResults] as? [[String:AnyObject]] {
+                if let results = results?[UdacityClient.JSONResponseKeys.UserResults] {
+                    print(results as Any)
                     let userData = ["result": results]
                     completionHandlerForGetPublicUserData(userData as NSDictionary, nil)
                 } else {

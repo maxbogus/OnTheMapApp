@@ -14,7 +14,7 @@ class CompleteNewPlaceViewController: UIViewController {
     @IBOutlet weak var map: MKMapView!
     var location: CLLocation!
     var url: String = ""
-    var userData: NSDictionary?
+    var userData: [String: AnyObject] = [:]
     @IBOutlet weak var finishButton: UIButton!
     
     @IBAction func returnBack(_ sender: Any) {
@@ -26,7 +26,7 @@ class CompleteNewPlaceViewController: UIViewController {
         var studentLocation: StudentInformation?
         UdacityClient.sharedInstance().getPublicUserData() { (userData, error) in
             if let data = userData {
-                self.userData = data
+                self.userData = data as! [String : AnyObject]
             } else {
                 print("Error. Cannot get userData: \(String(describing: userData))")
             }

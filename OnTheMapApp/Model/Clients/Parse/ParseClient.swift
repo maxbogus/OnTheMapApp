@@ -225,7 +225,6 @@ class ParseClient : NSObject {
     }
     
     // MARK: Shared Instance
-    
     class func sharedInstance() -> ParseClient {
         struct Singleton {
             static var sharedInstance = ParseClient()
