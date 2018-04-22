@@ -213,12 +213,15 @@ class UdacityClient : NSObject {
         components.queryItems = [URLQueryItem]()
         print(components)
         
-        if let parameters = parameters {
-            for (key, value) in parameters {
-                let queryItem = URLQueryItem(name: key, value: "\(value)")
-                components.queryItems!.append(queryItem)
+        if parameters != nil {
+            if let parameters = parameters {
+                for (key, value) in parameters {
+                    let queryItem = URLQueryItem(name: key, value: "\(value)")
+                    components.queryItems!.append(queryItem)
+                }
             }
         }
+        
         print(components.url!)
         return components.url!
     }
