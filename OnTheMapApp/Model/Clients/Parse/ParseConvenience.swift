@@ -49,7 +49,7 @@ extension ParseClient {
 
         /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
         let key = "\(UdacityClient.sharedInstance().userID!)"
-        let parameters = [ParameterKeys.Where: "%7B%22uniqueKey%22%3A%\(key)%22%7D"]
+        let parameters = [ParameterKeys.Where: "{\"uniqueKey\":\"\(key)\"}"]
 
         /* 2. Make the request */
         let _ = taskForGETMethod(Methods.StudentLocation, parameters: parameters as [String:AnyObject]) { (results, error) in
