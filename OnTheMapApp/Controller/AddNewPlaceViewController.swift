@@ -17,6 +17,7 @@ class AddNewPlaceViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var addLocationButton: UIButton!
     
     var url: String = ""
+    var mapString: String = ""
     lazy var geocoder = CLGeocoder()
     
     @IBAction func cancel(_ sender: Any) {
@@ -30,6 +31,7 @@ class AddNewPlaceViewController: UIViewController, UITextFieldDelegate {
         
         if let location = locationTextField.text, let link = linkTextField.text {
             url = link
+            mapString = location
             
             // Geocode Address String
             geocoder.geocodeAddressString(location) { (placemarks, error) in
@@ -84,6 +86,7 @@ class AddNewPlaceViewController: UIViewController, UITextFieldDelegate {
                     let controller = storyboard!.instantiateViewController(withIdentifier: "CompleteNewPlaceViewControllerUI") as! CompleteNewPlaceViewController
                     controller.location = location
                     controller.url = url
+                    controller.mapString = mapString
                     present(controller, animated: true, completion: nil)
                 }                
             } else {

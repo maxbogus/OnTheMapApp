@@ -81,12 +81,11 @@ class ParseClient : NSObject {
     
     // MARK: POST
     
-    func taskForPOSTMethod(_ method: String, parameters: [String:AnyObject], httpBody: String, completionHandlerForPOST: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
+    func taskForPOSTMethod(_ method: String, httpBody: String, completionHandlerForPOST: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
         
         /* 1. Set the parameters */
-        var parametersWithApiKey = parameters
         /* 2/3. Build the URL, Configure the request */
-        let request = NSMutableURLRequest(url: parseURLFromParameters(parametersWithApiKey, withPathExtension: method))
+        let request = NSMutableURLRequest(url: parseURLFromParameters(withPathExtension: method))
         request.httpMethod = "POST"
         request.addValue("\(Constants.AppID)", forHTTPHeaderField: "X-Parse-Application-Id")
         request.addValue("\(Constants.ApiKey)", forHTTPHeaderField: "X-Parse-REST-API-Key")
@@ -133,12 +132,11 @@ class ParseClient : NSObject {
     
     // MARK: PUT
     
-    func taskForPUTMethod(_ method: String, parameters: [String:AnyObject], httpBody: String, completionHandlerForPUT: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
+    func taskForPUTMethod(_ method: String, httpBody: String, completionHandlerForPUT: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
         
         /* 1. Set the parameters */
-        var parametersWithApiKey = parameters
         /* 2/3. Build the URL, Configure the request */
-        let request = NSMutableURLRequest(url: parseURLFromParameters(parametersWithApiKey, withPathExtension: method))
+        let request = NSMutableURLRequest(url: parseURLFromParameters(withPathExtension: method))
         request.addValue("\(Constants.AppID)", forHTTPHeaderField: "X-Parse-Application-Id")
         request.addValue("\(Constants.ApiKey)", forHTTPHeaderField: "X-Parse-REST-API-Key")
         request.httpBody = httpBody.data(using: String.Encoding.utf8)
@@ -206,7 +204,7 @@ class ParseClient : NSObject {
     }
     
     // create a URL from parameters
-    private func parseURLFromParameters(_ parameters: [String:AnyObject], withPathExtension: String? = nil) -> URL {
+    private func parseURLFromParameters(_ parameters: [String:AnyObject]? = nil, withPathExtension: String? = nil) -> URL {
         
         var components = URLComponents()
         components.scheme = ParseClient.Constants.ApiScheme
@@ -214,9 +212,13 @@ class ParseClient : NSObject {
         components.path = ParseClient.Constants.ApiPath + (withPathExtension ?? "")
         components.queryItems = [URLQueryItem]()
         
-        for (key, value) in parameters {
-            let queryItem = URLQueryItem(name: key, value: "\(value)")
-            components.queryItems!.append(queryItem)
+        if parameters != nil {
+            if let parameters = parameters {
+                for (key, value) in parameters {
+                    let queryItem = URLQueryItem(name: key, value: "\(value)")
+                    components.queryItems!.append(queryItem)
+                }
+            }
         }
         
         return components.url!

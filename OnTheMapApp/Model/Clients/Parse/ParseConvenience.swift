@@ -72,21 +72,18 @@ extension ParseClient {
     }
 
     // MARK: POST Convenience Methods
-    func createStudentLocation(completionHandlerForcreateStudentLocation: @escaping (_ result: Bool?, _ error: NSError?) -> Void) {
+    func createStudentLocation(httpBody: String, completionHandlerForcreateStudentLocation: @escaping (_ result: String?, _ error: NSError?) -> Void) {
         
         /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
-        let parameters = [ParameterKeys.Limit: ParameterValues.LimitValue,
-                          ParameterKeys.Order: ParameterValues.OrderType]
-        let httpBody = "{\"uniqueKey\": \"1234\", \"firstName\": \"John\", \"lastName\": \"Doe\",\"mapString\": \"Mountain View, CA\", \"mediaURL\": \"https://udacity.com\",\"latitude\": 37.386052, \"longitude\": -122.083851}"
-        
         /* 2. Make the request */
-        let _ = taskForPOSTMethod(Methods.StudentLocation, parameters: parameters as [String : AnyObject], httpBody: httpBody as String) { (results, error) in
+        let _ = taskForPOSTMethod(Methods.StudentLocation, httpBody: httpBody as String) { (results, error) in
             
             /* 3. Send the desired value(s) to completion handler */
             if let error = error {
                 completionHandlerForcreateStudentLocation(nil, error)
             } else {
-                if let results = results?[ParseClient.JSONResponseKeys.StatusCode] as? Bool {
+                print(results as Any)
+                if let results = results?[ParseClient.JSONResponseKeys.ObjectId] as? String {
                     completionHandlerForcreateStudentLocation(results, nil)
                 } else {
                     completionHandlerForcreateStudentLocation(nil, NSError(domain: "createStudentLocation parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse createStudentLocation"]))
@@ -96,15 +93,11 @@ extension ParseClient {
     }
     
     // MARK: PUT Convenience Methods
-    func updateStudentLocation(completionHandlerForUpdateStudentLocation: @escaping (_ result: Bool?, _ error: NSError?) -> Void) {
+    func updateStudentLocation(httpBody: String, completionHandlerForUpdateStudentLocation: @escaping (_ result: Bool?, _ error: NSError?) -> Void) {
         
         /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
-        let parameters = [ParameterKeys.Limit: ParameterValues.LimitValue,
-                          ParameterKeys.Order: ParameterValues.OrderType]
-        let httpBody = "{\"uniqueKey\": \"1234\", \"firstName\": \"John\", \"lastName\": \"Doe\",\"mapString\": \"Mountain View, CA\", \"mediaURL\": \"https://udacity.com\",\"latitude\": 37.386052, \"longitude\": -122.083851}"
-
         /* 2. Make the request */
-        let _ = taskForPUTMethod(Methods.StudentLocation, parameters: parameters as [String : AnyObject], httpBody: httpBody) { (results, error) in
+        let _ = taskForPUTMethod(Methods.StudentLocation, httpBody: httpBody) { (results, error) in
             
             /* 3. Send the desired value(s) to completion handler */
             if let error = error {
