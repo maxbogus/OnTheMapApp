@@ -48,7 +48,7 @@ struct StudentInformation {
         uniqueKey = dictionary[ParseClient.JSONResponseKeys.UniqueKey] as? String
         updatedAt = dictionary[ParseClient.JSONResponseKeys.UpdatedAt] as? String
     }
-    
+
     static func studentsFromResults(_ results: [[String:AnyObject]]) -> [StudentInformation] {
         
         var students = [StudentInformation]()

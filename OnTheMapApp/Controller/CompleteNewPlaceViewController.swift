@@ -15,6 +15,7 @@ class CompleteNewPlaceViewController: UIViewController {
     var location: CLLocation!
     var url: String = ""
     var mapString: String = ""
+    var objectId: String = ""
     var userData: [String: AnyObject] = [:]
     var httpBody: String = ""
     @IBOutlet weak var finishButton: UIButton!
@@ -67,7 +68,8 @@ class CompleteNewPlaceViewController: UIViewController {
     func getLocation() {
         ParseClient.sharedInstance().getStudentLocation() { (location, error) in
             if let location = location {
-                StudentsInformationDataSourse.sharedInstance().currentStudentLocation = location.first
+                let firstLocation = location.first
+                self.objectId = (firstLocation?.objectId)!
                 self.completePin()
             } else {
                 DispatchQueue.main.async {
@@ -89,7 +91,8 @@ class CompleteNewPlaceViewController: UIViewController {
         // get user data
         
         if (StudentsInformationDataSourse.sharedInstance().currentStudentLocation != nil) {
-            ParseClient.sharedInstance().updateStudentLocation(httpBody: httpBody) { (result, error) in
+            print(StudentsInformationDataSourse.sharedInstance().currentStudentLocation as Any)
+            ParseClient.sharedInstance().updateStudentLocation(objectId: objectId, httpBody: httpBody) { (result, error) in
                 if result != nil {
                     DispatchQueue.main.async {
                         self.finishButton.loadingIndicator(false)

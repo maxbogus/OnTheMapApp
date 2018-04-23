@@ -93,7 +93,7 @@ extension ParseClient {
     }
     
     // MARK: PUT Convenience Methods
-    func updateStudentLocation(httpBody: String, completionHandlerForUpdateStudentLocation: @escaping (_ result: Bool?, _ error: NSError?) -> Void) {
+    func updateStudentLocation(objectId: String, httpBody: String, completionHandlerForUpdateStudentLocation: @escaping (_ result: String?, _ error: NSError?) -> Void) {
         
         /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
         /* 2. Make the request */
@@ -103,7 +103,8 @@ extension ParseClient {
             if let error = error {
                 completionHandlerForUpdateStudentLocation(nil, error)
             } else {
-                if let results = results?[ParseClient.JSONResponseKeys.StatusCode] as? Bool {
+                print(results as Any)
+                if let results = results?[ParseClient.JSONResponseKeys.UpdatedAt] as? String {
                     completionHandlerForUpdateStudentLocation(results, nil)
                 } else {
                     completionHandlerForUpdateStudentLocation(nil, NSError(domain: "updateStudentLocation parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse updateStudentLocation"]))
